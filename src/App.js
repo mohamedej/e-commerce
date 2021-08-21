@@ -1,14 +1,25 @@
 import React from 'react';
 import { ChakraProvider, Box, theme } from '@chakra-ui/react';
 import Layout from './components/Layout';
+import '@fontsource/roboto';
+import { Route, Switch } from 'react-router-dom';
+import ProductList from './pages/ProductList';
+import Cart from './pages/Cart';
+import AboutUs from './pages/AboutUs';
+import Default from './pages/Default';
 
 function App() {
   return (
     <ChakraProvider theme={theme}>
-      <Box textAlign="center" fontSize="xl">
+      <Box textAlign="center" fontSize="xl" fontFamily="roboto">
         <Layout>
-          <Box bg={'blue.100'} w="full" h="full">
-            this will be my child
+          <Box w="full" h="full">
+            <Switch>
+              <Route exact path="/" component={ProductList} />
+              <Route path="/cart" component={Cart} />
+              <Route path="/about" component={AboutUs} />
+              <Route component={Default} />
+            </Switch>
           </Box>
         </Layout>
       </Box>
