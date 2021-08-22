@@ -1,7 +1,10 @@
 import { Badge, Box, IconButton, Image } from '@chakra-ui/react';
 import { FaShoppingCart } from 'react-icons/fa';
+import { useCartContext } from '../context/cart';
 
-export default function Product({ imageUrl, productName, price }) {
+export default function Product(product) {
+  const { imageUrl, productName, price } = product;
+  const { addItem } = useCartContext();
   return (
     <Box
       maxW={44}
@@ -30,9 +33,12 @@ export default function Product({ imageUrl, productName, price }) {
           {productName}
         </Box>
 
-        <Box fontSize="sm">{price}</Box>
+        <Box fontSize="sm">{price}$</Box>
         <Box textAlign="end">
           <IconButton
+            onClick={() => {
+              addItem(product);
+            }}
             _hover={{ color: 'gray', boxShadow: 'none' }}
             icon={<FaShoppingCart />}
           />

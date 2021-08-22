@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { BsSearch } from 'react-icons/bs';
 import { Link as RouterLink } from 'react-router-dom';
-import PopOver from '../PopOver';
+import PopOver from '../NavCart';
 const Nav = () => {
   return (
     <Flex w="full" px={12} pt={2} alignItems="center" bg="gray.100">
