@@ -12,8 +12,7 @@ import { AiOutlinePlus, AiOutlineMinus, AiFillDelete } from 'react-icons/ai';
 import ConfirmationModal from '../../components/ConfirmationModal';
 import { useCartContext } from '../../context/cart';
 export default function Product({ product, index }) {
-  const { cart, removeItem, addOneQuantity, minusOneQuantity } =
-    useCartContext();
+  const { cart, removeItem, addSameItem, removeSameItem } = useCartContext();
   const { onOpen, ...modalProps } = useDisclosure();
   return (
     <>
@@ -31,7 +30,7 @@ export default function Product({ product, index }) {
               <IconButton
                 icon={<AiOutlinePlus />}
                 onClick={() => {
-                  addOneQuantity(product.id);
+                  addSameItem(product.id);
                 }}
               />
               <Text>{product.quantity}</Text>
@@ -39,7 +38,7 @@ export default function Product({ product, index }) {
                 icon={<AiOutlineMinus />}
                 isDisabled={product.quantity <= 1}
                 onClick={() => {
-                  minusOneQuantity(product.id);
+                  removeSameItem(product.id);
                 }}
               />
             </HStack>
