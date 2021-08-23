@@ -4,13 +4,16 @@ export const CartContext = createContext(null);
 export const useCartContext = () => useContext(CartContext);
 
 export default function CartProvider({ children }) {
-  const [cart, setCart] = useState([]);
+  const [cart, setCart] = useState(
+    JSON.parse(localStorage.getItem('cart') || '[]')
+  );
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
     setTotalPrice(
       cart.reduce((acc, product) => acc + product.price * product.quantity, 0)
     );
+    localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);
 
   const addItem = item => {
@@ -36,17 +39,15 @@ export default function CartProvider({ children }) {
     const newItems = cart.filter(item => item.id !== id);
     setCart(newItems);
   };
-  const emptyCart = () => {
-    setCart([]);
-  };
-  const addOneQuantity = id => {
+
+  const addSameItem = id => {
     const mappedCart = cart.map(item =>
       item.id === id ? { ...item, quantity: item.quantity + 1 } : item
     );
     setCart(mappedCart);
   };
 
-  const minusOneQuantity = id => {
+  const removeSameItem = id => {
     const mappedCart = cart.map(item =>
       item.id === id ? { ...item, quantity: item.quantity - 1 } : item
     );
@@ -58,9 +59,8 @@ export default function CartProvider({ children }) {
         cart,
         addItem,
         removeItem,
-        emptyCart,
-        addOneQuantity,
-        minusOneQuantity,
+        addSameItem,
+        removeSameItem,
         totalPrice,
       }}
     >

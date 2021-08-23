@@ -1,10 +1,11 @@
-import { Badge, Box, IconButton, Image } from '@chakra-ui/react';
+import { Badge, Box, IconButton, Image, useToast } from '@chakra-ui/react';
 import { FaShoppingCart } from 'react-icons/fa';
 import { useCartContext } from '../context/cart';
 
 export default function Product(product) {
   const { imageUrl, productName, price } = product;
   const { addItem } = useCartContext();
+  const toast = useToast();
   return (
     <Box
       maxW={44}
@@ -38,6 +39,14 @@ export default function Product(product) {
           <IconButton
             onClick={() => {
               addItem(product);
+              toast({
+                title: 'Item added',
+                position: 'bottom-right',
+                description: "We've added this item to your personal cart.",
+                status: 'success',
+                duration: 3000,
+                isClosable: true,
+              });
             }}
             _hover={{ color: 'gray', boxShadow: 'none' }}
             icon={<FaShoppingCart />}

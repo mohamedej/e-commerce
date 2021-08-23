@@ -5,7 +5,6 @@ import '@fontsource/roboto';
 import { Route, Switch } from 'react-router-dom';
 import ProductList from './pages/ProductList';
 import Cart from './pages/Cart';
-import AboutUs from './pages/AboutUs';
 import Default from './pages/Default';
 
 function App() {
@@ -17,7 +16,6 @@ function App() {
             <Switch>
               <Route exact path="/" component={ProductList} />
               <Route path="/cart" component={Cart} />
-              <Route path="/about" component={AboutUs} />
               <Route component={Default} />
             </Switch>
           </Box>

@@ -7,10 +7,12 @@ import {
   ModalFooter,
   ModalHeader,
   ModalOverlay,
+  useToast,
 } from '@chakra-ui/react';
 import React from 'react';
 
 const ConfirmationModal = ({ isOpen, onClose, action, id }) => {
+  const toast = useToast();
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
       <ModalOverlay />
@@ -31,6 +33,14 @@ const ConfirmationModal = ({ isOpen, onClose, action, id }) => {
             onClick={() => {
               action(id);
               onClose();
+              toast({
+                title: 'Item deleted.',
+                position: 'bottom-right',
+                description: 'Item successfully removed from your cart.',
+
+                duration: 3000,
+                isClosable: true,
+              });
             }}
           >
             Delete

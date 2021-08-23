@@ -10,7 +10,6 @@ import {
   PopoverHeader,
   PopoverTrigger,
   Text,
-  Link,
   Button,
 } from '@chakra-ui/react';
 import React from 'react';
