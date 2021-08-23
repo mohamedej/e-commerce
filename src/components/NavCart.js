@@ -11,6 +11,7 @@ import {
   PopoverTrigger,
   Text,
   Link,
+  Button,
 } from '@chakra-ui/react';
 import React from 'react';
 import { RiShoppingCart2Fill } from 'react-icons/ri';
@@ -67,16 +68,15 @@ export default function NavCart() {
               )}
             </PopoverBody>
             <PopoverFooter>
-              <Link
+              <Button
+                colorScheme="orange"
                 onClick={onClose}
                 as={RouterLink}
                 to="/cart"
-                fontWeight="semibold"
-                _hover={{ color: 'gray' }}
-                _focus={{ boxShadow: 'none' }}
+                my={1}
               >
                 Open Cart
-              </Link>
+              </Button>
             </PopoverFooter>
           </PopoverContent>
         </>
